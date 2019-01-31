@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">UAV_Host</string>
+    <string name="app_name">UAV_Controller</string>
+    <string name="enter_uav">Enter UAV</string>
+    <string name="uav_apos_s_available_for_control">UAV\'s Available for Control</string>
+    <string name="start">START</string>
+    <string name="backward">Backward</string>
+    <string name="left">Left</string>
+    <string name="right">RIGHT</string>
+    <string name="up">Up</string>
+    <string name="down">DOWN</string>
+    <string name="forward">Forward</string>
+    <string name="for_lef">For/Lef</string>
+    <string name="for_rig">For/Rig</string>
+    <string name="bac_lef">BAC/LEF</string>
+    <string name="bac_rig">Bac/rig</string>
+    <string name="stop">Stop</string>
 </resources>

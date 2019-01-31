@@ -1,8 +1,6 @@
-package edu.und.beuning.john.uav_host;
+package edu.und.seau.uav_controller;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +16,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class control_screen  extends AppCompatActivity{
+
+public class control_screen  extends AppCompatActivity {
 
     // Button and Text Field Vars
     private Button btn_start;

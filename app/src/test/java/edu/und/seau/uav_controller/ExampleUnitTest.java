@@ -1,4 +1,4 @@
-package edu.und.beuning.john.uav_host;
+package edu.und.seau.uav_controller;
 
 import org.junit.Test;
 

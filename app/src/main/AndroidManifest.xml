@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.und.beuning.john.uav_host">
+    package="edu.und.seau.uav_controller">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 

@@ -1,8 +1,7 @@
-package edu.und.beuning.john.uav_host;
+package edu.und.seau.uav_controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +20,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         add_UAV = (Button) findViewById(R.id.btn_enter_UAV);
         listView = (ListView) findViewById(R.id.listView);
 
-        arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_of_UAVs);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list_of_UAVs);
 
         listView.setAdapter(arrayAdapter);
 
