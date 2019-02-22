@@ -22,7 +22,7 @@
     <Button
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:text="@string/start"
+        android:text="@string/center"
         android:id="@+id/btn_start"
         android:layout_alignTop="@+id/btn_left"
         android:layout_toEndOf="@+id/btn_left" />

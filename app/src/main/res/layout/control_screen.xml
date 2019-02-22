@@ -21,8 +21,8 @@
     <Button
         android:layout_width="@dimen/portrait_control_button_width"
         android:layout_height="wrap_content"
-        android:text="@string/start"
-        android:id="@+id/btn_start"
+        android:text="@string/center"
+        android:id="@+id/btn_center"
         android:layout_below="@+id/scrollView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="86dp" />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="@string/backward"
         android:id="@+id/btn_back"
-        android:layout_below="@+id/btn_start"
+        android:layout_below="@+id/btn_center"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -40,16 +40,16 @@
         android:layout_height="wrap_content"
         android:text="@string/left"
         android:id="@+id/btn_left"
-        android:layout_alignTop="@+id/btn_start"
-        android:layout_toStartOf="@+id/btn_start" />
+        android:layout_alignTop="@+id/btn_center"
+        android:layout_toStartOf="@+id/btn_center" />
 
     <Button
         android:layout_width="@dimen/portrait_control_button_width"
         android:layout_height="wrap_content"
         android:text="@string/right"
         android:id="@+id/btn_right"
-        android:layout_alignTop="@+id/btn_start"
-        android:layout_toEndOf="@+id/btn_start" />
+        android:layout_alignTop="@+id/btn_center"
+        android:layout_toEndOf="@+id/btn_center" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -71,8 +71,8 @@
     <Button
         android:layout_width="@dimen/portrait_control_button_width"
         android:layout_height="wrap_content"
-        android:text="@string/stop"
-        android:id="@+id/btn_stop"
+        android:text="@string/land"
+        android:id="@+id/btn_land"
         android:layout_below="@+id/btn_down"
         android:layout_centerHorizontal="true" />
 
@@ -98,7 +98,7 @@
         android:text="@string/for_rig"
         android:id="@+id/btn_fr"
         android:layout_alignTop="@+id/btn_for"
-        android:layout_toEndOf="@+id/btn_start" />
+        android:layout_toEndOf="@+id/btn_center" />
 
     <Button
         android:layout_width="@dimen/portrait_control_button_width"
