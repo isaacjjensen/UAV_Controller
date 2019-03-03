@@ -23,7 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class control_screen  extends AppCompatActivity {
 
     // Button and Text Field Vars
-    private Button btn_start;
+    private Button btn_center;
+    private Button btn_land;
     private Button btn_left;
     private Button btn_right;
     private Button btn_up;
@@ -56,18 +57,19 @@ public class control_screen  extends AppCompatActivity {
         setContentView(R.layout.control_screen);
 
         // Initialize Button and Text Vars
-        chat_conversation = (TextView) findViewById(R.id.textView);
-        btn_start = (Button) findViewById(R.id.btn_start);
-        btn_left = (Button) findViewById(R.id.btn_left);
-        btn_right = (Button) findViewById(R.id.btn_right);
-        btn_up = (Button) findViewById(R.id.btn_up);
-        btn_down = (Button) findViewById(R.id.btn_down);
-        btn_for = (Button) findViewById(R.id.btn_for);
-        btn_back = (Button) findViewById(R.id.btn_back);
-        btn_fl = (Button) findViewById(R.id.btn_fl);
-        btn_fr = (Button) findViewById(R.id.btn_fr);
-        btn_bl = (Button) findViewById(R.id.btn_bl);
-        btn_br = (Button) findViewById(R.id.btn_br);
+        chat_conversation = findViewById(R.id.textView);
+        btn_center = findViewById(R.id.btn_center);
+        btn_land = findViewById(R.id.btn_land);
+        btn_left = findViewById(R.id.btn_left);
+        btn_right = findViewById(R.id.btn_right);
+        btn_up = findViewById(R.id.btn_up);
+        btn_down = findViewById(R.id.btn_down);
+        btn_for = findViewById(R.id.btn_for);
+        btn_back = findViewById(R.id.btn_back);
+        btn_fl = findViewById(R.id.btn_fl);
+        btn_fr = findViewById(R.id.btn_fr);
+        btn_bl = findViewById(R.id.btn_bl);
+        btn_br = findViewById(R.id.btn_br);
 
         user_name = getIntent().getExtras().get("user_name").toString();
         UAV_name = getIntent().getExtras().get("UAV_name").toString();
@@ -75,7 +77,7 @@ public class control_screen  extends AppCompatActivity {
 
         root = FirebaseDatabase.getInstance().getReference().child(UAV_name);
 
-        btn_start.setOnClickListener(new View.OnClickListener() {
+        btn_center.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -85,7 +87,20 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","00"); //Start
+                map2.put("msg","OO"); //Start
+                message_root.updateChildren(map2);
+            }
+        });
+        btn_land.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Map<String,Object> map = new HashMap<String, Object>();
+                temp_key = root.push().getKey();
+                root.updateChildren(map);
+                DatabaseReference message_root = root.child(temp_key);
+                Map<String,Object> map2 = new HashMap<String, Object>();
+                map2.put("name",user_name);
+                map2.put("msg","PP"); //STOP
                 message_root.updateChildren(map2);
             }
         });
@@ -99,10 +114,8 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","aa"); // left 25 %
+                map2.put("msg","rr"); // left 25 %
                 message_root.updateChildren(map2);
-                long time= System.currentTimeMillis();
-                Log.d("Time Class ", " Time value in milliseconds "+time);
             }
         });
 
@@ -116,7 +129,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","AA"); // right 25 %
+                map2.put("msg","vv"); // right 50%
                 message_root.updateChildren(map2);
             }
         });
@@ -131,7 +144,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","WW"); // up 25 %
+                map2.put("msg","aa"); // up 25%
                 message_root.updateChildren(map2);
             }
         });
@@ -146,7 +159,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","ww"); // down 25 %
+                map2.put("msg","ee"); // down 25%
                 message_root.updateChildren(map2);
             }
         });
@@ -161,7 +174,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","11"); // forward 25%
+                map2.put("msg","jj"); // forward 50%
                 message_root.updateChildren(map2);
             }
 
@@ -178,7 +191,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","55"); // backward 25%
+                map2.put("msg","nn"); // backward 50%
                 message_root.updateChildren(map2);
             }
 
@@ -195,7 +208,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","66"); // backward 25%
+                map2.put("msg","zz"); // forward-left 50%
                 message_root.updateChildren(map2);
             }
 
@@ -212,7 +225,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","77"); // backward 25%
+                map2.put("msg","DD"); // forward-right 50%
                 message_root.updateChildren(map2);
             }
 
@@ -229,7 +242,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","88"); // backward 25%
+                map2.put("msg","HH"); // backward-left 50%
                 message_root.updateChildren(map2);
             }
 
@@ -246,7 +259,7 @@ public class control_screen  extends AppCompatActivity {
                 DatabaseReference message_root = root.child(temp_key);
                 Map<String,Object> map2 = new HashMap<String, Object>();
                 map2.put("name",user_name);
-                map2.put("msg","99"); // backward 25%
+                map2.put("msg","LL"); // backward-right 50%
                 message_root.updateChildren(map2);
             }
 
