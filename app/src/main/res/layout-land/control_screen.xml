@@ -7,6 +7,50 @@
     android:layout_height="match_parent">
 
 
+    <Button
+        android:id="@+id/btn_bl2"
+        android:layout_width="@dimen/landscape_control_button_width"
+        android:layout_height="wrap_content"
+        android:text="@string/bac_lef"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintEnd_toEndOf="@+id/btn_left"
+        app:layout_constraintStart_toStartOf="@+id/btn_left"
+        app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+    <Button
+        android:id="@+id/btn_fl2"
+        android:layout_width="@dimen/landscape_control_button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/for_lef"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_for"
+        app:layout_constraintEnd_toStartOf="@+id/btn_for"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_for" />
+
+    <Button
+        android:id="@+id/btn_fr2"
+        android:layout_width="@dimen/landscape_control_button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/for_rig"
+        app:layout_constraintBottom_toTopOf="@+id/btn_right"
+        app:layout_constraintEnd_toEndOf="@+id/btn_right"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_right" />
+
+    <Button
+        android:id="@+id/btn_br2"
+        android:layout_width="@dimen/landscape_control_button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/bac_rig"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="@+id/btn_back"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -26,47 +70,53 @@
         android:id="@+id/btn_start"
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="36dp"
         android:text="@string/start"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/button" />
 
     <Button
         android:id="@+id/btn_left"
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_bl2"
+        app:layout_constraintEnd_toEndOf="@+id/btn_fl2"
+        app:layout_constraintStart_toStartOf="@+id/btn_fl2"
+        app:layout_constraintTop_toBottomOf="@+id/btn_fl2" />
 
     <Button
         android:id="@+id/btn_right"
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/right"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toBottomOf="@+id/btn_for" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_br2"
+        app:layout_constraintEnd_toEndOf="@+id/btn_br2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_br2" />
 
     <Button
         android:id="@+id/btn_up"
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="36dp"
         android:text="@string/up"
         app:layout_constraintBottom_toTopOf="@+id/btn_down"
         app:layout_constraintEnd_toEndOf="@+id/btn_down"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btn_down" />
 
     <Button
         android:id="@+id/btn_down"
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button" />
@@ -75,31 +125,29 @@
         android:id="@+id/btn_for"
         android:layout_width="124dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="228dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="4dp"
         android:text="@string/forward"
-        app:layout_constraintBottom_toTopOf="@+id/btn_left"
-        app:layout_constraintStart_toEndOf="@+id/btn_left"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/btn_fr2"
+        app:layout_constraintStart_toEndOf="@+id/btn_fl2"
+        app:layout_constraintTop_toTopOf="@+id/btn_fr2" />
 
     <Button
         android:id="@+id/btn_back"
         android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="52dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/backward"
-        app:layout_constraintStart_toEndOf="@+id/btn_left"
-        app:layout_constraintTop_toBottomOf="@+id/btn_left" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_bl2" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/stop"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/land"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

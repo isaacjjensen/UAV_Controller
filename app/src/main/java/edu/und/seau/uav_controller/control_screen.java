@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class control_screen  extends AppCompatActivity {
 
     // Button and Text Field Vars
-    private Button btn_center;
+    private Button btn_start;
     private Button btn_land;
     private Button btn_left;
     private Button btn_right;
@@ -58,8 +58,8 @@ public class control_screen  extends AppCompatActivity {
 
         // Initialize Button and Text Vars
         chat_conversation = findViewById(R.id.textView);
-        btn_center = findViewById(R.id.btn_center);
-        btn_land = findViewById(R.id.btn_land);
+        btn_start = findViewById(R.id.btn_start);
+        btn_land = findViewById(R.id.btn_stop);
         btn_left = findViewById(R.id.btn_left);
         btn_right = findViewById(R.id.btn_right);
         btn_up = findViewById(R.id.btn_up);
@@ -77,7 +77,7 @@ public class control_screen  extends AppCompatActivity {
 
         root = FirebaseDatabase.getInstance().getReference().child(UAV_name);
 
-        btn_center.setOnClickListener(new View.OnClickListener() {
+        btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

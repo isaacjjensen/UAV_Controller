@@ -14,4 +14,6 @@
     <string name="bac_lef">BAC/LEF</string>
     <string name="bac_rig">Bac/rig</string>
     <string name="land">Land</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
 </resources>
