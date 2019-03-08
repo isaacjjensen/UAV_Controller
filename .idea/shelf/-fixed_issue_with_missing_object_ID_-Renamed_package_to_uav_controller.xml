@@ -1,0 +1,9 @@
+<changelist name="-fixed_issue_with_missing_object_ID_-Renamed_package_to_uav_controller" date="1551656574537" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/-fixed_issue_with_missing_object_ID_-Renamed_package_to_uav_controller/shelved.patch" />
+  <option name="DESCRIPTION" value="-fixed issue with missing object ID -Renamed package to uav_controller" />
+  <binary>
+    <option name="BEFORE_PATH" value=".idea/caches/build_file_checksums.ser" />
+    <option name="AFTER_PATH" value=".idea/caches/build_file_checksums.ser" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/-fixed_issue_with_missing_object_ID_-Renamed_package_to_uav_controller/build_file_checksums.ser" />
+  </binary>
+</changelist>

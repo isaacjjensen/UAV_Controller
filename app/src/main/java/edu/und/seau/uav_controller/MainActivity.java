@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_UAVs = new ArrayList<>();
     private final String name="HOST";
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
 
     @Override
@@ -60,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Set<String> set = new HashSet<String>();
+                Set<String> set = new HashSet<>();
                 Iterator i = dataSnapshot.getChildren().iterator();
 
                 while (i.hasNext()){
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
