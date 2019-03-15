@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="JoystickView">
+        <attr name="direction" format="enum">
+            <enum name="omni-directional" value="0"/>
+            <enum name="bi-directional" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

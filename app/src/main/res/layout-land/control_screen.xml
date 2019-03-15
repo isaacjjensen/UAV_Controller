@@ -2,54 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp" >
 
+    <edu.und.seau.uav_controller.JoystickView
+        android:id="@+id/rightStick"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        custom:direction="omni-directional" />
 
-    <Button
-        android:id="@+id/btn_bl2"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:text="@string/bac_lef"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-        app:layout_constraintEnd_toEndOf="@+id/btn_left"
-        app:layout_constraintStart_toStartOf="@+id/btn_left"
-        app:layout_constraintTop_toTopOf="@+id/btn_back" />
-
-    <Button
-        android:id="@+id/btn_fl2"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/for_lef"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_for"
-        app:layout_constraintEnd_toStartOf="@+id/btn_for"
+    <edu.und.seau.uav_controller.JoystickView
+        android:id="@+id/leftStick"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_for" />
-
-    <Button
-        android:id="@+id/btn_fr2"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/for_rig"
-        app:layout_constraintBottom_toTopOf="@+id/btn_right"
-        app:layout_constraintEnd_toEndOf="@+id/btn_right"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/btn_right" />
-
-    <Button
-        android:id="@+id/btn_br2"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/bac_rig"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_back"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="@+id/btn_back"
-        app:layout_constraintVertical_bias="0.0" />
+        custom:direction="bi-directional" />
 
     <TextView
         android:id="@+id/textView"
@@ -70,84 +46,67 @@
         android:id="@+id/btn_start"
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:text="@string/start"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button" />
-
-    <Button
-        android:id="@+id/btn_left"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/left"
-        app:layout_constraintBottom_toTopOf="@+id/btn_bl2"
-        app:layout_constraintEnd_toEndOf="@+id/btn_fl2"
-        app:layout_constraintStart_toStartOf="@+id/btn_fl2"
-        app:layout_constraintTop_toBottomOf="@+id/btn_fl2" />
+        android:text="@string/start"
+        app:layout_constraintBottom_toTopOf="@+id/btn_stop"
+        app:layout_constraintEnd_toEndOf="@+id/rightStick"
+        app:layout_constraintStart_toStartOf="@+id/rightStick" />
 
     <Button
-        android:id="@+id/btn_right"
+        android:id="@+id/btn_stop"
         android:layout_width="@dimen/landscape_control_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/right"
-        app:layout_constraintBottom_toTopOf="@+id/btn_br2"
-        app:layout_constraintEnd_toEndOf="@+id/btn_br2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/btn_br2" />
-
-    <Button
-        android:id="@+id/btn_up"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:text="@string/up"
-        app:layout_constraintBottom_toTopOf="@+id/btn_down"
-        app:layout_constraintEnd_toEndOf="@+id/btn_down"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btn_down" />
-
-    <Button
-        android:id="@+id/btn_down"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/down"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button" />
-
-    <Button
-        android:id="@+id/btn_for"
-        android:layout_width="124dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/forward"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_fr2"
-        app:layout_constraintStart_toEndOf="@+id/btn_fl2"
-        app:layout_constraintTop_toTopOf="@+id/btn_fr2" />
-
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/backward"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_bl2" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="@dimen/landscape_control_button_width"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/land"
+        app:layout_constraintBottom_toTopOf="@+id/rightStick"
+        app:layout_constraintEnd_toEndOf="@+id/btn_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_start" />
+
+    <ToggleButton
+        android:id="@+id/toggleCmdPoll"
+        android:layout_width="119dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="8dp"
+        android:text="ToggleButton"
+        app:layout_constraintBottom_toTopOf="@+id/leftStick"
+        app:layout_constraintEnd_toEndOf="@+id/leftStick"
+        app:layout_constraintStart_toStartOf="@+id/leftStick" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/rightStick"
+        app:layout_constraintStart_toEndOf="@+id/leftStick"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_uav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="false"
+        app:layout_constraintStart_toStartOf="@+id/map"
+        app:layout_constraintTop_toTopOf="@+id/map"
+        custom:srcCompat="@android:drawable/ic_input_add" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_ctrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:focusable="false"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_uav"
+        app:layout_constraintStart_toEndOf="@+id/fab_uav"
+        app:layout_constraintTop_toTopOf="@+id/fab_uav"
+        custom:srcCompat="@android:drawable/ic_menu_compass" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

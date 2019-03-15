@@ -16,4 +16,11 @@
     <string name="land">Land</string>
     <string name="start">start</string>
     <string name="stop">stop</string>
+    <string name="try_again">Request Permission</string>
+    <string name="exit">Continue</string>
+    <string name="dialog_no_location_permissions">Location Permission highly suggested as it is needed for tracking UAV location for both manual and autonomous navigation.</string>
+    <string name="title_no_location_permissions">Location Information Needed</string>
+    <string name="toast_no_loc">App capabilities severely limited without Location Permission</string>
+    <string name="toast_map_lock">Map locked</string>
+    <string name="toast_map_unlock">Map unlocked</string>
 </resources>
