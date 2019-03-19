@@ -16,4 +16,24 @@
     <string name="land">Land</string>
     <string name="start">start</string>
     <string name="stop">stop</string>
+    <string name="control_uav">Control UAV</string>
+    <string name="my_profile">My Profile</string>
+    <string name="welcome">Welcome</string>
+    <string name="login_message">Please Login or Register</string>
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+    <string name="remember_login">Remember Login</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="user_email">user_email</string>
+    <string name="please_register_your_login_information">Please Register Your Login Information</string>
+    <string name="new_account">New Account</string>
+    <string name="_12_01_2000">12/01/2000</string>
+    <string name="_999_999_999">999-999-999</string>
+    <string name="birthday">Birthday:</string>
+    <string name="phone_optional">Phone # (optional)</string>
+    <string name="news">News</string>
+    <string name="here_is_where_you_would_see_news_if_we_had_some">Here is where you would see news, If we had some.</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
+    <string name="logout">Logout</string>
 </resources>
