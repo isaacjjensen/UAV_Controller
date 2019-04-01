@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import edu.und.seau.di.components.DaggerSelectUAVFragmentComponent;
-import edu.und.seau.di.components.SelectUAVFragmentComponent;
+import edu.und.seau.di.components.DaggerPresentationComponent;
+import edu.und.seau.di.components.PresentationComponent;
 import edu.und.seau.presentation.presenters.SelectUAVPresenter;
 import edu.und.seau.presentation.views.SelectUAVView;
 import edu.und.seau.uav_controller.R;
@@ -22,34 +22,42 @@ import edu.und.seau.uav_controller.databinding.SelectUavBinding;
 
 public class SelectUAVFragment extends Fragment implements SelectUAVView {
 
-    SelectUavBinding binding;
-    SelectUAVPresenter presenter;
-    SelectUAVFragmentComponent component;
-    ArrayAdapter<String> adapter;
+    private SelectUavBinding binding;
+    private SelectUAVPresenter presenter;
+    private PresentationComponent component;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.select_uav,container,false);
-        component = DaggerSelectUAVFragmentComponent.create();
+        component = DaggerPresentationComponent.create();
         presenter = component.getSelectUAVPresenter();
         presenter.setView(this);
 
 
-        binding.btnEnterUAV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                enterOnClick();
-            }
-        });
+        binding.btnEnterUAV.setOnClickListener(v -> enterOnClick());
         return binding.getRoot();
     }
 
     private void enterOnClick()
     {
         //TODO Update With Selection Name
-        presenter.onEnterClicked("const");
+        presenter.onEnterClicked();
+    }
+
+    public String getSelectedUAVID(){
+        String returnValue = null;
+        if(binding != null){
+            returnValue = binding.uavIDText.getText().toString();
+        }
+        return returnValue;
+    }
+
+    public void setSelectedUAVID(String uavID){
+        if(binding != null){
+            binding.uavIDText.setText(uavID);
+        }
     }
 
     @Override
@@ -64,12 +72,6 @@ public class SelectUAVFragment extends Fragment implements SelectUAVView {
         SelectUAVFragment fragment = new SelectUAVFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public void setListViewItems(ArrayList<String> items)
-    {
-        adapter = new ArrayAdapter<>(Objects.requireNonNull(this.getContext()),R.layout.select_uav_row,items);
-        binding.listView.setAdapter(adapter);
     }
 
     @Override

@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
 import edu.und.seau.common.FirebaseConstants;
+import edu.und.seau.firebase.modelmapper.FirebaseUAVMapper;
 import edu.und.seau.firebase.modelmapper.FirebaseUserMapper;
 import edu.und.seau.firebase.models.server.ServerSettings;
 import edu.und.seau.firebase.models.uav.UAV;
@@ -74,42 +75,19 @@ public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
         });
     }
 
-    public void getUAVList(Consumer<ArrayList<UAV>> onResult){
-        database.collection(KEY_UAV).get().addOnCompleteListener(command -> {
-           if(command.isSuccessful())
-           {
-               onResult.accept(getUAVListFromDB(Objects.requireNonNull(command.getResult())));
-           }
+    public void getUAVFromID(String uavID, Consumer<UAV> onResult){
+        DocumentReference documentReference = database
+                .collection(KEY_UAV)
+                .document(uavID);
+
+        documentReference.get().addOnCompleteListener(task -> {
+            UAV result = null;
+            if(task.isSuccessful()){
+                result = FirebaseUAVMapper.getUAVFromHash(task.getResult().getData());
+            }
+            onResult.accept(result);
         });
     }
-
-    private ArrayList<UAV> getUAVListFromDB(QuerySnapshot snapshot)
-    {
-        ArrayList<UAV> returnList = new ArrayList<>();
-        for (DocumentSnapshot documentSnapshot:snapshot.getDocuments()) {
-            UAV uavToAdd = documentSnapshotToUAV(documentSnapshot);
-            if(uavToAdd != null)
-            {
-                returnList.add(uavToAdd);
-            }
-        }
-        return returnList;
-    }
-
-    private UAV documentSnapshotToUAV(DocumentSnapshot snapshot)
-    {
-        UAV returnValue = null;
-        if(snapshot.contains(KEY_ID) && snapshot.contains(KEY_NAME))
-        {
-
-            String id = (String)snapshot.get(FirebaseConstants.KEY_ID);
-            String name = (String) snapshot.get(KEY_NAME);
-            returnValue = new UAV(id);
-            returnValue.setName(name);
-        }
-        return  returnValue;
-    }
-
 
     @Override
     public void listenForUAVs(Consumer<UAV> onResult) {

@@ -16,5 +16,6 @@ public interface FirebaseDatabaseInterface {
     void listenForUAVs(Consumer<UAV> onResult);
 
     void getServerSettings(Consumer<ServerSettings> onResult);
-    void getUAVList(Consumer<ArrayList<UAV>> onResult);
+
+    void getUAVFromID(String uavID, Consumer<UAV> onResult);
 }

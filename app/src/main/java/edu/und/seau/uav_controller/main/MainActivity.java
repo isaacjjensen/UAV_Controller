@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import edu.und.seau.di.components.DaggerMainActivityComponent;
-import edu.und.seau.di.components.MainActivityComponent;
+import edu.und.seau.di.components.DaggerPresentationComponent;
+import edu.und.seau.di.components.PresentationComponent;
 import edu.und.seau.presentation.presenters.MainPresenter;
 import edu.und.seau.presentation.views.ControllerView;
 import edu.und.seau.presentation.views.LogoutView;
@@ -33,7 +33,7 @@ public class MainActivity
         extends AppCompatActivity
         implements MainView, LogoutNotificationInterface, SelectUAVNotificationInterface {
     ActivityMainBinding binding;
-    MainActivityComponent component;
+    PresentationComponent component;
     MainPresenter presenter;
 
     ActionBar toolbar;
@@ -42,6 +42,23 @@ public class MainActivity
     NewsView newsFragment;
     LogoutView logoutFragment;
     ControllerView controllerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        component = DaggerPresentationComponent.create();
+        presenter = component.getMainPresenter();
+        newsFragment = NewsFragment.newInstance();
+        logoutFragment = LogoutFragment.newInstance();
+        controllerView = SelectUAVFragment.newInstance();
+        presenter.setView(this);
+        initToolbar();
+        bottomNavigationView = binding.bottomNavigation;
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+
+        bottomNavigationView.setSelectedItemId(R.id.navigate_news_activity);
+    }
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener()
@@ -65,30 +82,13 @@ public class MainActivity
                     break;
                 default:
                     return false;
-
             }
             openFragment(fragment);
             return true;
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        component = DaggerMainActivityComponent.create();
-        presenter = component.getMainPresenter();
-        newsFragment = NewsFragment.newInstance();
-        logoutFragment = LogoutFragment.newInstance();
-        controllerView = SelectUAVFragment.newInstance();
-        presenter.setView(this);
 
-        initToolbar();
-        bottomNavigationView = binding.bottomNavigation;
-        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-
-        bottomNavigationView.setSelectedItemId(R.id.navigate_news_activity);
-    }
 
     private void initToolbar()
     {
@@ -107,9 +107,12 @@ public class MainActivity
 
     public void logout()
     {
-        startActivity(new Intent(this, WelcomeActivity.class));
+        presenter.onLogoutClicked();
     }
 
+    public void NavigateToWelcomeScreen(){
+        startActivity(new Intent(this, WelcomeActivity.class));
+    }
 
     public void uavSelected() {
         controllerView = ControlScreenFragment.newInstance();

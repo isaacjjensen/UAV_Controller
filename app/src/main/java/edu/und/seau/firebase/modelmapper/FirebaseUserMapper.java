@@ -10,6 +10,8 @@ public class FirebaseUserMapper {
     private static final String KEY_USERNAME = FirebaseConstants.KEY_USERNAME;
     private static final String KEY_ID = FirebaseConstants.KEY_ID;
     private static final String KEY_EMAIL = FirebaseConstants.KEY_EMAIL;
+
+
     public static HashMap<String, Object> getUserHash(User user)
     {
         HashMap<String, Object> hashMap = new HashMap<>();

@@ -43,7 +43,7 @@ public class MainActivity_old extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         add_UAV = (Button) findViewById(R.id.btn_enter_UAV);
-        listView = (ListView) findViewById(R.id.listView);
+        //listView = (ListView) findViewById(R.id.listView);
 
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list_of_UAVs);
 

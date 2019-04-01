@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">UAV_Controller</string>
     <string name="enter_uav">Enter UAV</string>
-    <string name="uav_apos_s_available_for_control">UAV\'s Available for Control</string>
+    <string name="uav_apos_s_available_for_control">Please Enter UAV Information</string>
     <string name="center">Center</string>
     <string name="backward">Backward</string>
     <string name="left">Left</string>
@@ -29,11 +29,14 @@
     <string name="please_register_your_login_information">Please Register Your Login Information</string>
     <string name="new_account">New Account</string>
     <string name="_12_01_2000">12/01/2000</string>
-    <string name="_999_999_999">999-999-999</string>
     <string name="birthday">Birthday:</string>
     <string name="phone_optional">Phone # (optional)</string>
     <string name="news">News</string>
     <string name="here_is_where_you_would_see_news_if_we_had_some">Here is where you would see news, If we had some.</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="uav_id">UAV ID:</string>
+    <string name="name">Name</string>
+    <string name="uav_id_name">Enter the UAV ID Shown on the UAV</string>
 </resources>

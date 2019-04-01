@@ -2,13 +2,10 @@
 <resources>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="_12_01_2000">12/01/2000</string>
-    <string name="_999_999_999">999-999-999</string>
-    <string name="birthday">Birthday:</string>
-    <string name="phone_optional">Phone # (optional)</string>
     <string name="register">Register</string>
     <string name="news">News</string>
     <string name="here_is_where_you_would_see_news_if_we_had_some">Here is where you would see news, If we had some.</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
+    <string name="repeat_password">Repeat Password</string>
 </resources>

@@ -24,9 +24,6 @@ public class LogoutPresenter extends BasePresenter {
     {
         if(view != null)
         {
-            authenticationInterface.logOut(onResult ->{
-
-            });
             view.logout();
         }
     }

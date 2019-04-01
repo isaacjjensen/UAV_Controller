@@ -11,8 +11,8 @@ import edu.und.seau.uav_controller.control.SelectUAVFragment;
 
 public class SelectUAVPresenter {
 
-    FirebaseDatabaseInterface databaseInterface;
-    SelectUAVView view;
+    private FirebaseDatabaseInterface databaseInterface;
+    private SelectUAVView view;
 
     @Inject
     public SelectUAVPresenter(FirebaseDatabaseInterface databaseInterface)
@@ -21,28 +21,27 @@ public class SelectUAVPresenter {
 
     }
 
-    public void setUAVSelection(ArrayList<UAV> uavs)
-    {
-        if(view != null)
-        {
-            ArrayList<String> uavStrings = new ArrayList<>();
-            for (UAV uav:uavs) {
-                uavStrings.add(uav.toString());
-            }
-            view.setListViewItems(uavStrings);
-        }
-    }
 
     public void setView(SelectUAVView view)
     {
         this.view = view;
-        databaseInterface.getUAVList(this::setUAVSelection);
     }
 
-    public void onEnterClicked(String uavID)
+    public void onEnterClicked()
     {
         if(view != null)
         {
+            databaseInterface.getUAVFromID(view.getSelectedUAVID(), this::onUavSeachResults);
+        }
+    }
+
+    private void onUavSeachResults(UAV result)
+    {
+        if(result != null)
+        {
+            UAV uavInstance = UAV.getInstance();
+            uavInstance.setName(result.getName());
+            uavInstance.setId(result.getId());
             view.onUAVSelected();
         }
     }

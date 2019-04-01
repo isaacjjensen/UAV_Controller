@@ -1,14 +1,16 @@
 package edu.und.seau.uav_controller.welcome;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import edu.und.seau.di.components.DaggerWelcomeActivityComponent;
-import edu.und.seau.di.components.WelcomeActivityComponent;
+import edu.und.seau.di.components.DaggerPresentationComponent;
+import edu.und.seau.di.components.PresentationComponent;
 import edu.und.seau.presentation.presenters.WelcomePresenter;
 import edu.und.seau.presentation.views.WelcomeView;
 import edu.und.seau.uav_controller.R;
@@ -18,7 +20,7 @@ import edu.und.seau.uav_controller.register.RegisterActivity;
 
 public class WelcomeActivity extends AppCompatActivity implements WelcomeView {
     WelcomePresenter presenter;
-    WelcomeActivityComponent component;
+    PresentationComponent component;
     WelcomeScreenBinding binding;
 
     @Override
@@ -27,24 +29,12 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeView {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.welcome_screen);
 
-        component = DaggerWelcomeActivityComponent.create();
+        component = DaggerPresentationComponent.create();
         presenter = component.getWelcomePresenter();
         presenter.setContext(this);
 
-
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLoginClicked();
-            }
-        });
-
-        binding.registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onRegisterClicked();
-            }
-        });
+        binding.loginButton.setOnClickListener(v -> onLoginClicked());
+        binding.registerButton.setOnClickListener(v -> onRegisterClicked());
     }
 
     public String getEmail()
@@ -67,6 +57,18 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeView {
         return returnValue;
     }
 
+    public Boolean getRememberLogin(){
+        Boolean returnValue = false;
+        if(binding != null){
+            returnValue = binding.rememberMe.isChecked();
+        }
+        return returnValue;
+    }
+
+    public SharedPreferences getStoredSettings(){
+        return getPreferences(Context.MODE_PRIVATE);
+    }
+
     public void setEmail(String email)
     {
         if(binding != null)
@@ -80,6 +82,14 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeView {
         if(binding != null)
         {
             binding.passwordEntry.setText(password);
+        }
+    }
+
+    @Override
+    public void setRememberLogin(Boolean rememberLogin) {
+        if(binding != null)
+        {
+            binding.rememberMe.setChecked(rememberLogin);
         }
     }
 

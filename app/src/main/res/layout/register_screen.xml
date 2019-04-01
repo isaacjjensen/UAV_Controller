@@ -68,15 +68,30 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="17dp"
         android:ems="10"
         android:gravity="center|end"
         android:selectAllOnFocus="false"
         android:text="@string/password"
         android:textAlignment="textEnd"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/password_entry"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/password_entry" />
+        app:layout_constraintTop_toBottomOf="@+id/emailText" />
+
+    <TextView
+        android:id="@+id/passwordText3"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="center|end"
+        android:selectAllOnFocus="false"
+        android:text="@string/repeat_password"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/passwordText"
+        app:layout_constraintStart_toStartOf="@+id/passwordText"
+        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
 
     <EditText
         android:id="@+id/password_entry"
@@ -94,68 +109,30 @@
         app:layout_constraintTop_toBottomOf="@+id/email_entry" />
 
     <EditText
-        android:id="@+id/birthday_entry"
-        android:layout_width="0dp"
+        android:id="@+id/password_entry_repeat"
+        android:layout_width="255dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="@string/_12_01_2000"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="@+id/password_entry"
-        app:layout_constraintStart_toStartOf="@+id/password_entry"
-        app:layout_constraintTop_toBottomOf="@+id/password_entry"
-        android:autofillHints="" />
-
-    <EditText
-        android:id="@+id/phone_entry"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="@string/_999_999_999"
-        android:inputType="phone"
-        android:tooltipText="A phone number can be used to help recover an account in the future."
-        app:layout_constraintEnd_toEndOf="@+id/birthday_entry"
-        app:layout_constraintStart_toStartOf="@+id/birthday_entry"
-        app:layout_constraintTop_toBottomOf="@+id/birthday_entry"
-        android:autofillHints="" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center|end"
-        android:text="@string/birthday"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/birthday_entry"
-        app:layout_constraintEnd_toEndOf="@+id/passwordText"
-        app:layout_constraintStart_toStartOf="@+id/passwordText"
-        app:layout_constraintTop_toTopOf="@+id/birthday_entry" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center|end"
-        android:text="@string/phone_optional"
-        android:textSize="18sp"
-        android:tooltipText="A phone number can be used to help recover an account in the future."
-        app:layout_constraintBottom_toBottomOf="@+id/phone_entry"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/phone_entry" />
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="@+id/passwordText3"
+        app:layout_constraintStart_toEndOf="@+id/passwordText3"
+        app:layout_constraintTop_toTopOf="@+id/passwordText3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:text="@string/register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_entry" />
+        app:layout_constraintTop_toBottomOf="@+id/password_entry_repeat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

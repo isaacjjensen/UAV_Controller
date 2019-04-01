@@ -5,11 +5,13 @@ public interface RegisterView {
 
     String getEmail();
     String getPassword();
-    String getBirthday();
-    String getPhoneNumber();
+    String getRepeatPassword();
 
     void setEmail(String email);
     void setPassword(String password);
-    void setBirthday(String birthday);
-    void setPhoneNumber(String phoneNumber);
+    void setRepeatPassword(String password);
+
+    void setEmailInputError(String errorMessage);
+    void setPasswordInputError(String errorMessage);
+    void setRepeatPasswordInputError(String errorMessage);
 }

@@ -9,7 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import edu.und.seau.di.components.DaggerControlFragmentComponent;
+import edu.und.seau.di.components.DaggerPresentationComponent;
+import edu.und.seau.di.components.PresentationComponent;
 import edu.und.seau.presentation.presenters.ControlPresenter;
 import edu.und.seau.presentation.views.ControlFragmentView;
 import edu.und.seau.uav_controller.R;
@@ -19,19 +20,20 @@ public class ControlScreenFragment extends Fragment implements ControlFragmentVi
 
     ControlScreenBinding binding;
     ControlPresenter presenter;
-    DaggerControlFragmentComponent component;
+    PresentationComponent component;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.control_screen,container,false);
-
+        component = DaggerPresentationComponent.create();
+        presenter = component.getControlPresenter();
+        presenter.setView(this);
 
         return binding.getRoot();
     }
 
     public static ControlScreenFragment newInstance() {
-        
         Bundle args = new Bundle();
         
         ControlScreenFragment fragment = new ControlScreenFragment();

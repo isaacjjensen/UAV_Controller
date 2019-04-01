@@ -5,5 +5,6 @@ import java.util.ArrayList;
 public interface SelectUAVView extends ControllerView {
 
     void onUAVSelected();
-    void setListViewItems(ArrayList<String> items);
+    void setSelectedUAVID(String uavID);
+    String getSelectedUAVID();
 }

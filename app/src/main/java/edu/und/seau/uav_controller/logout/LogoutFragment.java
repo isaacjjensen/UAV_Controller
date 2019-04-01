@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import edu.und.seau.di.components.DaggerLogoutFragmentComponent;
-import edu.und.seau.di.components.LogoutFragmentComponent;
+import edu.und.seau.di.components.DaggerPresentationComponent;
+import edu.und.seau.di.components.PresentationComponent;
 import edu.und.seau.presentation.presenters.LogoutPresenter;
 import edu.und.seau.presentation.views.LogoutView;
 import edu.und.seau.uav_controller.R;
@@ -20,14 +19,14 @@ import edu.und.seau.uav_controller.databinding.LogoutScreenBinding;
 
 public class LogoutFragment extends Fragment implements LogoutView {
     LogoutScreenBinding binding;
-    LogoutFragmentComponent component;
+    PresentationComponent component;
     LogoutPresenter presenter;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.logout_screen,container,false);
-        component = DaggerLogoutFragmentComponent.create();
+        component = DaggerPresentationComponent.create();
         presenter = component.getLogoutPresenter();
         presenter.setView(this);
 

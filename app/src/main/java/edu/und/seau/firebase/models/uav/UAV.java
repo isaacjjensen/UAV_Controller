@@ -5,6 +5,8 @@ import edu.und.seau.common.UAVCommon;
 
 public class UAV {
 
+    private static UAV _instance;
+
     private String id = "";
     private String Name = "";
 
@@ -17,6 +19,8 @@ public class UAV {
     }
 
     public void setName(String value) { Name = value;}
+
+    public void setId(String id) {this.id = id;}
 
     public void generateNewID()
     {
@@ -42,6 +46,13 @@ public class UAV {
     @Override
     public String toString() {
         return "Name: "+Name+ "ID: "+ id;
+    }
+
+    public static UAV getInstance(){
+        if (_instance == null){
+            _instance = new UAV();
+        }
+        return _instance;
     }
 
 }

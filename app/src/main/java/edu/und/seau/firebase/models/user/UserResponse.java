@@ -1,24 +1,37 @@
 package edu.und.seau.firebase.models.user;
 
-public class UserResponse {
-    public String username;
-    public String id;
-    public String email;
+import javax.inject.Inject;
 
-    public UserResponse(String id, String username, String email)
+import edu.und.seau.common.ValidationHelpersKt;
+
+public class UserResponse {
+    public String email = "";
+    public String password = "";
+    public String repeatedPassword = "";
+
+    @Inject
+    public UserResponse()
     {
-        this.id = id;
-        this.username = username;
-        this.email = email;
+
     }
 
     public User mapToUser()
     {
-        return new User(id,username,email);
+        return new User();
     }
+
+    public Boolean isEmailValid() {
+        return  ValidationHelpersKt.isEmailValid(email);
+    }
+
+    public Boolean isPasswordValid(){ return ValidationHelpersKt.isPasswordValid(password); }
+
+    public Boolean arePasswordsSame() { return ValidationHelpersKt.arePasswordsSame(password,repeatedPassword); }
 
     public Boolean isValid()
     {
-        return (!id.isEmpty()) && (!username.isEmpty()) && (!email.isEmpty());
+        return  (isEmailValid()
+                && isPasswordValid()
+                && arePasswordsSame());
     }
 }

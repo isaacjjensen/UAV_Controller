@@ -1,43 +1,63 @@
 package edu.und.seau.uav_controller.register;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.databinding.DataBindingUtil;
-import edu.und.seau.di.components.DaggerRegisterActivityComponent;
-import edu.und.seau.di.components.RegisterActivityComponent;
+import edu.und.seau.common.ValidationHelpersKt;
+import edu.und.seau.di.components.DaggerPresentationComponent;
+import edu.und.seau.di.components.PresentationComponent;
+import edu.und.seau.firebase.models.user.UserResponse;
 import edu.und.seau.presentation.presenters.RegisterPresenter;
 import edu.und.seau.presentation.views.RegisterView;
 import edu.und.seau.uav_controller.R;
 import edu.und.seau.uav_controller.databinding.RegisterScreenBinding;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterView {
-    RegisterActivityComponent component;
+    PresentationComponent component;
     RegisterScreenBinding binding;
     RegisterPresenter presenter;
-
+    UserResponse _pageUser;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.register_screen);
-        component = DaggerRegisterActivityComponent.create();
+        component = DaggerPresentationComponent.create();
         presenter = component.getRegisterPrensenter();
         presenter.setContext(this);
-
+        _pageUser = component.getRegisterUserObject();
         binding.registerButton.setOnClickListener(v -> onRegisterClicked());
+        binding.emailEntry.setOnFocusChangeListener((v, hasFocus) -> onEmailChanged());
+        binding.passwordEntry.setOnFocusChangeListener((v, hasFocus) -> onPasswordChanged());
+        binding.passwordEntryRepeat.setOnFocusChangeListener((v,hasFocus)->onPasswordRepeatChanged());
+    }
+
+    private void onPasswordRepeatChanged(){
+        if(presenter != null) {
+            presenter.onRepeatPasswordChanged();
+        }
+    }
+
+    private void onPasswordChanged() {
+        if(presenter != null) {
+            presenter.onPasswordChanged();
+        }
+    }
+
+    private void onEmailChanged() {
+        if(presenter != null) {
+            presenter.onEmailChanged();
+        }
     }
 
     private void onRegisterClicked()
     {
-        presenter.onRegisterClicked();
+        if(presenter != null){
+            presenter.onRegisterClicked();
+        }
     }
 
     public void navigateToParent()
@@ -67,23 +87,13 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     }
 
     @Override
-    public String getBirthday() {
-        String returnValue = null;
+    public String getRepeatPassword() {
+        String response = null;
         if(binding != null)
         {
-            returnValue = binding.birthdayEntry.getText().toString();
+            response = binding.passwordEntryRepeat.getText().toString();
         }
-        return returnValue;
-    }
-
-    @Override
-    public String getPhoneNumber() {
-        String returnValue = null;
-        if(binding != null)
-        {
-            returnValue = binding.phoneEntry.getText().toString();
-        }
-        return returnValue;
+        return response;
     }
 
     @Override
@@ -103,18 +113,31 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     }
 
     @Override
-    public void setBirthday(String birthday) {
+    public void setRepeatPassword(String password) {
         if(binding != null)
         {
-            binding.birthdayEntry.setText(birthday);
+            binding.passwordEntryRepeat.setText(password);
         }
     }
 
     @Override
-    public void setPhoneNumber(String phoneNumber) {
-        if(binding != null)
-        {
-            binding.phoneEntry.setText(phoneNumber);
+    public void setEmailInputError(String errorMessage) {
+        if(binding != null) {
+            binding.emailEntry.setError(errorMessage);
+        }
+    }
+
+    @Override
+    public void setPasswordInputError(String errorMessage) {
+        if(binding != null) {
+            binding.passwordEntry.setError(errorMessage);
+        }
+    }
+
+    @Override
+    public void setRepeatPasswordInputError(String errorMessage) {
+        if(binding != null) {
+            binding.passwordEntryRepeat.setError(errorMessage);
         }
     }
 }
