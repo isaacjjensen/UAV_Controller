@@ -32,11 +32,15 @@
     <string name="birthday">Birthday:</string>
     <string name="phone_optional">Phone # (optional)</string>
     <string name="news">News</string>
-    <string name="here_is_where_you_would_see_news_if_we_had_some">Here is where you would see news, If we had some.</string>
+    <string name="here_is_where_you_would_see_news_if_we_had_some">The world is a VAMPIRE</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="uav_id">UAV ID:</string>
     <string name="name">Name</string>
     <string name="uav_id_name">Enter the UAV ID Shown on the UAV</string>
+    <string name="cmdToggleOn">Reading CMDs</string>
+    <string name="cmdToggleOff">Not Reading</string>
+    <string name="locToggleOn">Tracking UAV</string>
+    <string name="locToggleOff">Not Tracking</string>
 </resources>
