@@ -60,19 +60,19 @@ public class control_screen_old extends AppCompatActivity {
 
         // Initialize Button and Text Vars
         //chat_conversation = findViewById(R.id.textView);
-        btn_start = findViewById(R.id.btn_start);
-        btn_center = findViewById(R.id.btn_center);
-        btn_land = findViewById(R.id.btn_stop);
-        btn_left = findViewById(R.id.btn_left);
-        btn_right = findViewById(R.id.btn_right);
-        btn_up = findViewById(R.id.btn_up);
-        btn_down = findViewById(R.id.btn_down);
-        btn_for = findViewById(R.id.btn_for);
-        btn_back = findViewById(R.id.btn_back);
-        btn_fl = findViewById(R.id.btn_fl);
-        btn_fr = findViewById(R.id.btn_fr);
-        btn_bl = findViewById(R.id.btn_bl);
-        btn_br = findViewById(R.id.btn_br);
+//        btn_start = findViewById(R.id.btn_start);
+//        btn_center = findViewById(R.id.btn_center);
+//        btn_land = findViewById(R.id.btn_stop);
+//        btn_left = findViewById(R.id.btn_left);
+//        btn_right = findViewById(R.id.btn_right);
+//        btn_up = findViewById(R.id.btn_up);
+//        btn_down = findViewById(R.id.btn_down);
+//        btn_for = findViewById(R.id.btn_for);
+//        btn_back = findViewById(R.id.btn_back);
+//        btn_fl = findViewById(R.id.btn_fl);
+//        btn_fr = findViewById(R.id.btn_fr);
+//        btn_bl = findViewById(R.id.btn_bl);
+//        btn_br = findViewById(R.id.btn_br);
 
         user_name = getIntent().getExtras().get("user_name").toString();
         UAV_name = getIntent().getExtras().get("UAV_name").toString();

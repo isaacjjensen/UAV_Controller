@@ -21,7 +21,6 @@ public class SelectUAVPresenter {
 
     }
 
-
     public void setView(SelectUAVView view)
     {
         this.view = view;
@@ -31,11 +30,11 @@ public class SelectUAVPresenter {
     {
         if(view != null)
         {
-            databaseInterface.getUAVFromID(view.getSelectedUAVID(), this::onUavSeachResults);
+            databaseInterface.getUAVFromID(view.getSelectedUAVID(), this::onUavSearchResults);
         }
     }
 
-    private void onUavSeachResults(UAV result)
+    private void onUavSearchResults(UAV result)
     {
         if(result != null)
         {
