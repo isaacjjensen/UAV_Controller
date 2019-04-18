@@ -1,45 +1,31 @@
 package edu.und.seau.firebase.database;
 
-
-import android.util.Log;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Tag;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Document;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
-
 import javax.inject.Inject;
 
-import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
-import edu.und.seau.common.FirebaseConstants;
 import edu.und.seau.firebase.modelmapper.FirebaseUAVMapper;
 import edu.und.seau.firebase.modelmapper.FirebaseUserMapper;
 import edu.und.seau.firebase.models.server.ServerSettings;
 import edu.und.seau.firebase.models.uav.UAV;
 import edu.und.seau.firebase.models.user.User;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
-
-import static edu.und.seau.common.FirebaseConstants.KEY_NAME;
 
 public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
     private static final String KEY_USER = "User";
     private static final String KEY_ID = "id";
     private static final String KEY_UAV  = "UAV";
     private static final String KEY_SERVERSETTINGS = "ServerSettings";
+    private static final String KEY_REQUESTS = "Requests";
+    private static final String KEY_RESPONSES = "Responses";
 
     private FirebaseFirestore database;
 
@@ -83,7 +69,7 @@ public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
         documentReference.get().addOnCompleteListener(task -> {
             UAV result = null;
             if(task.isSuccessful()){
-                result = FirebaseUAVMapper.getUAVFromHash(task.getResult().getData());
+                result = FirebaseUAVMapper.getUAVFromHash(Objects.requireNonNull(task.getResult()).getData());
             }
             onResult.accept(result);
         });
@@ -96,6 +82,30 @@ public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
     @Override
     public void getServerSettings(Consumer<ServerSettings> onResult) {
 
+    }
+
+
+    public ListenerRegistration ListenForResponse(String userKey, String uavKey, Consumer<Map<String, Object>> OnResult){
+
+        return database.collection(KEY_UAV)
+                .document(uavKey)
+                .collection(KEY_RESPONSES).addSnapshotListener((queryDocumentSnapshots, e) -> {
+                    if(queryDocumentSnapshots != null){
+                        for (QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots) {
+                            if(documentSnapshot.getId().equals(userKey)){
+                                OnResult.accept(documentSnapshot.getData());
+                            }
+                        }
+                    }
+                });
+    }
+
+    public void sendCommand(String userKey, String uavKey, Map<String, Object> commandData){
+        database.collection(KEY_UAV)
+                .document(uavKey)
+                .collection(KEY_REQUESTS)
+                .document(userKey)
+                .set(commandData);
     }
 
 }
