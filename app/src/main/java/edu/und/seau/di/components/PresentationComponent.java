@@ -4,8 +4,6 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import edu.und.seau.di.module.InteractionModule;
-import edu.und.seau.firebase.models.user.User;
-import edu.und.seau.firebase.models.user.UserResponse;
 import edu.und.seau.presentation.presenters.ControlPresenter;
 import edu.und.seau.presentation.presenters.LogoutPresenter;
 import edu.und.seau.presentation.presenters.MainPresenter;
@@ -23,7 +21,4 @@ public interface PresentationComponent {
     SelectUAVPresenter getSelectUAVPresenter();
     WelcomePresenter getWelcomePresenter();
 
-    @Singleton
-    User getCurrentUser();
-    UserResponse getRegisterUserObject();
 }

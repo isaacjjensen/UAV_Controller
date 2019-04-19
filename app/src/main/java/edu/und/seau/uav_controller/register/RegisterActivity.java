@@ -19,7 +19,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     PresentationComponent component;
     RegisterScreenBinding binding;
     RegisterPresenter presenter;
-    UserResponse _pageUser;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,8 +26,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         binding = DataBindingUtil.setContentView(this, R.layout.register_screen);
         component = DaggerPresentationComponent.create();
         presenter = component.getRegisterPrensenter();
+
         presenter.setContext(this);
-        _pageUser = component.getRegisterUserObject();
+
         binding.registerButton.setOnClickListener(v -> onRegisterClicked());
         binding.emailEntry.setOnFocusChangeListener((v, hasFocus) -> onEmailChanged());
         binding.passwordEntry.setOnFocusChangeListener((v, hasFocus) -> onPasswordChanged());
@@ -65,6 +65,19 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         NavUtils.navigateUpFromSameTask(this);
     }
 
+    public String getNotificationMessage(){
+        String returnValue = null;
+        if(binding != null){
+            returnValue = binding.welcomeInformation.getText().toString();
+        }
+        return returnValue;
+    }
+
+    public void setNotificationMessage(String message){
+        if(binding != null){
+            binding.welcomeInformation.setText(message);
+        }
+    }
 
     @Override
     public String getEmail() {

@@ -14,7 +14,6 @@ public class RegisterPresenter extends BasePresenter {
 
     private FirebaseDatabaseInterface databaseInterface;
     private FirebaseAuthenticationInterface authenticationInterface;
-    private RegisterModel registerModel = new RegisterModel();
     private UserResponse _userEntry;
 
     @Inject
@@ -95,12 +94,15 @@ public class RegisterPresenter extends BasePresenter {
 
     private void onRegisterResult(Boolean isSuccessful, String name, String email)
     {
-        if(isSuccessful)
-        {
+        if(isSuccessful) {
             createUser(name, email);
-            if(view != null)
-            {
+            if(view != null) {
                 view.navigateToParent();
+            }
+        }
+        else {
+            if(view != null){
+                view.setNotificationMessage("Unable to create user. Does one already exist?");
             }
         }
     }

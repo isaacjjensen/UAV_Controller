@@ -1,5 +1,6 @@
 package edu.und.seau.firebase.database;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,24 +39,27 @@ public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
     @Override
     public void createUser(@NotNull String id, @NotNull String name, @NotNull String email) {
         User user = new User(id, name, email);
-
-        database.collection(KEY_USER).add(FirebaseUserMapper.getUserHash(user));
+        DocumentReference docRef = database.collection(KEY_USER).document(id);
+        docRef.get().addOnCompleteListener(command -> {
+           if(!Objects.requireNonNull(command.getResult()).exists()){
+               docRef.set(FirebaseUserMapper.getUserHash(user));
+           }
+        });
     }
 
     @Override
     public void getProfile(String id, Consumer<User> onResult) {
-
         DocumentReference docRef =database
                 .collection(KEY_USER)
                 .document(id);
-
         docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful())
-            {
+            if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
-                if(Objects.requireNonNull(document).exists())
-                {
+                if(Objects.requireNonNull(document).exists()) {
                     onResult.accept(FirebaseUserMapper.getUserFromHash(document.getData()));
+                }
+                else {
+                    onResult.accept(null);
                 }
             }
         });
@@ -75,18 +79,8 @@ public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
         });
     }
 
-    @Override
-    public void listenForUAVs(Consumer<UAV> onResult) {
-    }
-
-    @Override
-    public void getServerSettings(Consumer<ServerSettings> onResult) {
-
-    }
-
 
     public ListenerRegistration ListenForResponse(String userKey, String uavKey, Consumer<Map<String, Object>> OnResult){
-
         return database.collection(KEY_UAV)
                 .document(uavKey)
                 .collection(KEY_RESPONSES).addSnapshotListener((queryDocumentSnapshots, e) -> {
@@ -96,6 +90,21 @@ public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
                                 OnResult.accept(documentSnapshot.getData());
                             }
                         }
+                    }
+                });
+    }
+
+    public void DeleteResponse(String userKey, String uavID, OnCompleteListener<DocumentSnapshot> task){
+        database.collection(KEY_UAV)
+                .document(uavID)
+                .collection(KEY_RESPONSES)
+                .document(userKey)
+                .get().addOnCompleteListener(command -> {
+                    if(command.isSuccessful()){
+                        task.onComplete(command);
+                    }
+                    else{
+                        task.onComplete(null);
                     }
                 });
     }

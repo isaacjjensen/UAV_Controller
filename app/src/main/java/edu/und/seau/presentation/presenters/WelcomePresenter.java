@@ -34,9 +34,9 @@ public class WelcomePresenter extends BasePresenter {
             if(_preferences != null)
             {
                 Boolean rememberLogin = _preferences.getBoolean(KEY_REMEMBERLOGIN,false);
-                String email = _preferences.getString(KEY_EMAIL,"");
                 view.setRememberLogin(rememberLogin);
                 if(rememberLogin){
+                    String email = _preferences.getString(KEY_EMAIL,"");
                     view.setEmail(email);
                 }
             }
@@ -53,7 +53,6 @@ public class WelcomePresenter extends BasePresenter {
 
     public void OnLoginClicked()
     {
-
         if(view != null)
         {
             LoginRequest request = new LoginRequest();
@@ -84,11 +83,11 @@ public class WelcomePresenter extends BasePresenter {
         if(_preferences != null) {
            if(view != null) {
                Boolean rememberLogin = view.getRememberLogin();
-               String email = view.getEmail();
                SharedPreferences.Editor editor = _preferences.edit();
                editor.putBoolean(KEY_REMEMBERLOGIN,rememberLogin);
                if(rememberLogin)
                {
+                   String email = view.getEmail();
                    editor.putString(KEY_EMAIL,email);
                }
                editor.apply();

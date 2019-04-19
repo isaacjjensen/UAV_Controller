@@ -18,9 +18,6 @@ public interface FirebaseDatabaseInterface {
 
     void getProfile(String id, Consumer<User> onResult);
 
-    void listenForUAVs(Consumer<UAV> onResult);
-
-    void getServerSettings(Consumer<ServerSettings> onResult);
 
     void getUAVFromID(String uavID, Consumer<UAV> onResult);
     void sendCommand(String userKey, String uavKey, Map<String, Object> commandData);

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/UAV_Controller.iml" filepath="$PROJECT_DIR$/.idea/UAV_Controller.iml" />
       <module fileurl="file://$PROJECT_DIR$/UAV_Controller_My_Changes.iml" filepath="$PROJECT_DIR$/UAV_Controller_My_Changes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
