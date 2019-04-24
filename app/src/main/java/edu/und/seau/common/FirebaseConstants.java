@@ -18,4 +18,5 @@ public class FirebaseConstants {
     public static final String KEY_DURATION = "DURATION";
     public static final String KEY_GPS_LOCATION = "GPS LOCATION";
     public static final String KEY_CONTROL_STATUS = "CONTROL STATUS";
+    public static final String KEY_TIME_STAMP = "TIME_STAMP";
 }

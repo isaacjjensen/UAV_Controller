@@ -1,5 +1,6 @@
 package edu.und.seau.firebase.commands;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.ListenerRegistration;
 
@@ -11,7 +12,9 @@ import javax.inject.Inject;
 
 import androidx.core.util.Consumer;
 
-import edu.und.seau.firebase.commands.enumerations.ControlStatus;
+import org.jetbrains.annotations.NotNull;
+
+import edu.und.seau.common.FirebaseConstants;
 import edu.und.seau.firebase.database.FirebaseDatabaseInterface;
 
 public class CommandManager {
@@ -32,7 +35,8 @@ public class CommandManager {
     }
 
 
-    public void SendCommand(String userKey ,String uavKey, HashMap<String, Object> request){
+    private void SendCommand(@NotNull String userKey, @NotNull String uavKey, @NotNull HashMap<String, Object> request){
+        request.put(FirebaseConstants.KEY_TIME_STAMP, Timestamp.now());
         databaseInterface.DeleteResponse(userKey,uavKey,null);
         databaseInterface.SendRequest(userKey, uavKey, request);
     }
