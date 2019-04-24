@@ -6,10 +6,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.databinding.DataBindingUtil;
-import edu.und.seau.common.ValidationHelpersKt;
+
 import edu.und.seau.di.components.DaggerPresentationComponent;
 import edu.und.seau.di.components.PresentationComponent;
-import edu.und.seau.firebase.models.user.UserResponse;
 import edu.und.seau.presentation.presenters.RegisterPresenter;
 import edu.und.seau.presentation.views.RegisterView;
 import edu.und.seau.uav_controller.R;
@@ -25,7 +24,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.register_screen);
         component = DaggerPresentationComponent.create();
-        presenter = component.getRegisterPrensenter();
+        presenter = component.getRegisterPresenter();
 
         presenter.setContext(this);
 

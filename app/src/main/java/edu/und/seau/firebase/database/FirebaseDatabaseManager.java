@@ -14,9 +14,10 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 import androidx.core.util.Consumer;
+
+import edu.und.seau.firebase.commands.CommandManager;
 import edu.und.seau.firebase.modelmapper.FirebaseUAVMapper;
 import edu.und.seau.firebase.modelmapper.FirebaseUserMapper;
-import edu.und.seau.firebase.models.server.ServerSettings;
 import edu.und.seau.firebase.models.uav.UAV;
 import edu.und.seau.firebase.models.user.User;
 
@@ -65,7 +66,7 @@ public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
         });
     }
 
-    public void getUAVFromID(String uavID, Consumer<UAV> onResult){
+    public void getUAVFromID(String uavID, String userID, Consumer<UAV> onResult){
         DocumentReference documentReference = database
                 .collection(KEY_UAV)
                 .document(uavID);
@@ -79,42 +80,34 @@ public class FirebaseDatabaseManager implements FirebaseDatabaseInterface{
         });
     }
 
+    public void SendRequest(@NotNull String userKey, @NotNull String uavKey, @NotNull Map<String, Object> request){
+        database.collection(KEY_UAV)
+                .document(uavKey)
+                .collection(KEY_REQUESTS)
+                .document(userKey)
+                .set(request);
+    }
 
-    public ListenerRegistration ListenForResponse(String userKey, String uavKey, Consumer<Map<String, Object>> OnResult){
+    public ListenerRegistration ListenForResponse(@NotNull String userKey, @NotNull String uavKey, Consumer<Map<String, Object>> OnResult){
         return database.collection(KEY_UAV)
                 .document(uavKey)
                 .collection(KEY_RESPONSES).addSnapshotListener((queryDocumentSnapshots, e) -> {
                     if(queryDocumentSnapshots != null){
                         for (QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots) {
                             if(documentSnapshot.getId().equals(userKey)){
-                                OnResult.accept(documentSnapshot.getData());
+                                HashMap<String, Object> responseData = new HashMap<>(documentSnapshot.getData());
+                                responseData.put(KEY_ID, userKey);
+                                OnResult.accept(responseData);
                             }
                         }
                     }
                 });
     }
 
-    public void DeleteResponse(String userKey, String uavID, OnCompleteListener<DocumentSnapshot> task){
+    public void DeleteResponse(@NotNull String userKey, @NotNull String uavID, Consumer<DocumentSnapshot> task){
         database.collection(KEY_UAV)
                 .document(uavID)
                 .collection(KEY_RESPONSES)
-                .document(userKey)
-                .get().addOnCompleteListener(command -> {
-                    if(command.isSuccessful()){
-                        task.onComplete(command);
-                    }
-                    else{
-                        task.onComplete(null);
-                    }
-                });
+                .document(userKey).delete();
     }
-
-    public void sendCommand(String userKey, String uavKey, Map<String, Object> commandData){
-        database.collection(KEY_UAV)
-                .document(uavKey)
-                .collection(KEY_REQUESTS)
-                .document(userKey)
-                .set(commandData);
-    }
-
 }

@@ -19,6 +19,7 @@ import edu.und.seau.presentation.views.ControllerView;
 import edu.und.seau.presentation.views.LogoutView;
 import edu.und.seau.presentation.views.MainView;
 import edu.und.seau.presentation.views.NewsView;
+import edu.und.seau.presentation.views.SelectUAVView;
 import edu.und.seau.uav_controller.R;
 import edu.und.seau.uav_controller.control.ControlScreenFragment;
 import edu.und.seau.uav_controller.control.SelectUAVFragment;
@@ -43,6 +44,7 @@ public class MainActivity
     NewsView newsFragment;
     LogoutView logoutFragment;
     ControllerView controllerView;
+    SelectUAVView selectUAVView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +52,13 @@ public class MainActivity
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         component = DaggerPresentationComponent.create();
         presenter = component.getMainPresenter();
-        newsFragment = NewsFragment.newInstance();
-        logoutFragment = LogoutFragment.newInstance();
-        controllerView = SelectUAVFragment.newInstance();
         presenter.setView(this);
+
+        newsFragment = component.getNewsView();
+        logoutFragment = component.getLogoutView();
+        controllerView = component.getControllerView();
+        selectUAVView = component.getSelectUAVView();
+
         initToolbar();
         bottomNavigationView = binding.bottomNavigation;
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
@@ -71,7 +76,7 @@ public class MainActivity
             switch (menuItemID)
             {
                 case  R.id.navigate_control_activity :
-                    fragment = controllerView.getFragmentInstance();
+                    fragment = selectUAVView.getFragmentInstance();
                     break;
                 case R.id.navigate_news_activity :
                     fragment = newsFragment.getFragmentInstance();
@@ -115,8 +120,7 @@ public class MainActivity
         startActivity(new Intent(this, WelcomeActivity.class));
     }
 
-    public void uavSelected() {
-        controllerView = ControlScreenFragment.newInstance();
+    public void uavSelected(String uavID) {
         openFragment(controllerView.getFragmentInstance());
     }
 }

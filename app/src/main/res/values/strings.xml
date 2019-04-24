@@ -43,4 +43,10 @@
     <string name="cmdToggleOff">Not Reading</string>
     <string name="locToggleOn">Tracking UAV</string>
     <string name="locToggleOff">Not Tracking</string>
+    <string name="title_activity_debug">DebugActivity</string>
+    <string name="already_controlled_dialog_message">Unable to request control of the UAV, it is already controlled.</string>
+    <string name="already_controlled_dialog_title">UAV Already Controlled</string>
+    <string name="ok">OK</string>
+    <string name="success">Success!</string>
+    <string name="connection_success">Connection Successful!</string>
 </resources>

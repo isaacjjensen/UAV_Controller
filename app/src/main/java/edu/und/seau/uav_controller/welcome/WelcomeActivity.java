@@ -122,4 +122,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeView {
     {
         startActivity(new Intent(this, RegisterActivity.class));
     }
+
+    @Override
+    public  void onBackPressed(){ }
 }

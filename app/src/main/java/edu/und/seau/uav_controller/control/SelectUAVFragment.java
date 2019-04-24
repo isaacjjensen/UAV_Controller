@@ -4,15 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+
 import edu.und.seau.di.components.DaggerPresentationComponent;
 import edu.und.seau.di.components.PresentationComponent;
 import edu.und.seau.presentation.presenters.SelectUAVPresenter;
@@ -38,6 +38,10 @@ public class SelectUAVFragment extends Fragment implements SelectUAVView {
 
         binding.btnEnterUAV.setOnClickListener(v -> enterOnClick());
         return binding.getRoot();
+    }
+
+    public Fragment getFragment(){
+        return this;
     }
 
     private void enterOnClick()
@@ -75,7 +79,7 @@ public class SelectUAVFragment extends Fragment implements SelectUAVView {
     }
 
     @Override
-    public void onUAVSelected() {
-        ((SelectUAVNotificationInterface)Objects.requireNonNull(getActivity())).uavSelected();
+    public void onUAVSelected(String uavID) {
+        ((SelectUAVNotificationInterface)Objects.requireNonNull(getActivity())).uavSelected(uavID);
     }
 }

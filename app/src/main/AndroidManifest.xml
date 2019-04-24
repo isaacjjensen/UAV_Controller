@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="edu.und.seau.uav_controller">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".App"
@@ -14,30 +14,39 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <!--<activity
+            android:name=".debug.DebugActivity"
+            android:label="@string/title_activity_debug"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> -->
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".welcome.WelcomeActivity">
+        <activity android:name=".welcome.WelcomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".register.RegisterActivity"
+        <activity
+            android:name=".register.RegisterActivity"
             android:label="Register Activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:parentActivityName=".welcome.WelcomeActivity">
-
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".welcome.WelcomeActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".welcome.WelcomeActivity" />
         </activity>
-
-        <activity android:name=".main.MainActivity">
-        </activity>
-
-
+        <activity
+            android:name=".main.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
