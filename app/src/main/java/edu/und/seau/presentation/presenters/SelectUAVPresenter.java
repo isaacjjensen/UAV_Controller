@@ -2,6 +2,8 @@ package edu.und.seau.presentation.presenters;
 
 import android.app.AlertDialog;
 
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.Map;
@@ -25,6 +27,7 @@ public class SelectUAVPresenter {
     private CommandManager commandManager;
     private SelectUAVView view;
     private ListenerRegistration requestResponse;
+    private BarcodeDetector detector;
 
 
     @Inject
@@ -37,7 +40,12 @@ public class SelectUAVPresenter {
 
     public void setView(SelectUAVView view)
     {
-        this.view = view;
+        if(view != null){
+            this.view = view;
+            detector = new BarcodeDetector.Builder(view.getFragment().getActivity().getApplicationContext())
+            .setBarcodeFormats(Barcode.QR_CODE)
+            .build();
+        }
     }
 
     public void onEnterClicked()

@@ -25,7 +25,6 @@ public class CommandManager {
     private static final String KEY_LIFT = "LIFT";
     private static final String KEY_DURATION = "DURATION";
     private static final String KEY_GPS_LOCATION = "GPS LOCATION";
-    private static final String KEY_CONTROL_STATUS = "CONTROL STATUS";
 
     private FirebaseDatabaseInterface databaseInterface;
 
